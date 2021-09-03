@@ -1,10 +1,15 @@
 // get elements
 const panels = document.querySelectorAll('.panel');
 const start = document.querySelector('.play');
+const numberMoves = document.querySelector('.number-moves');
+const movesDOM = document.querySelector('.moves');
+const lostDOM = document.querySelector('.lost');
+const startDOM = document.querySelector('.start-header');
 
 // initilize var
 let memory = [];
 let counter = 0;
+let moves = 0;
 let startFlag = true;
 let showFlag = true;
 
@@ -25,6 +30,10 @@ function launchGame() {
     }
   });
   startFlag = false;
+  start.style.display = 'none';
+  movesDOM.style.display = 'block';
+  lostDOM.style.display = 'none';
+  startDOM.style.display = 'none';
 }
 
 // display the color
@@ -47,11 +56,22 @@ function userResponse() {
   // if the player is wrong
   if (!(this.dataset.id == memory[counter])) {
     console.log('error');
+    lostDOM.style.display = 'block';
+    movesDOM.style.display = 'none';
+    start.style.display = 'block';
+    startDOM.style.display = 'block';
+    startFlag = true;
+    memory = [];
+    counter = 0;
+    moves = 0;
+    numberMoves.textContent = `${moves}`;
     return;
   }
 
   // if the player is right and if he has done all of the steps
   if (counter + 1 == memory.length) {
+    moves++;
+    numberMoves.textContent = `${moves}`;
     showFlag = false;
 
     // launch a new set
@@ -82,3 +102,13 @@ function userResponse() {
     counter++;
   }
 }
+
+// si faux
+// afficher une erreur en dom ou en alert
+// bloquer toute action
+// active le start
+
+// ajouter un counter de move
+// afficher le counter de move
+
+// modifer le start
