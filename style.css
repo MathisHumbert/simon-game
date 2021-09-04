@@ -66,6 +66,56 @@ main {
   opacity: 1;
 }
 
+.circle-container {
+  display: grid;
+  gap: 12px;
+}
+.inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.single-input {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+label {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #222;
+}
+input {
+  cursor: pointer;
+}
+
+.circle-container h2 {
+  text-align: center;
+  color: #fdfdfd;
+}
+
+.start {
+  padding: 12px;
+  border-radius: 75%;
+  border: none;
+  color: #222;
+  cursor: pointer;
+}
+
+.count-board {
+  width: 4rem;
+  height: 2rem;
+  background-color: #360707;
+  display: grid;
+  place-items: center;
+}
+.count {
+  font-size: 20px;
+  color: #e74d3c;
+}
+
 @media screen and (min-width: 1440px) {
   .panel {
     width: 300px;
