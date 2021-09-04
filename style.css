@@ -62,44 +62,8 @@ main {
   place-items: center;
 }
 
-.play {
-  cursor: pointer;
-  color: #222;
-  font-size: 4rem;
-}
-.play:hover {
-  transform: scale(1.1);
-}
-
-.moves {
-  color: #222;
-  display: none;
-  text-align: center;
-  font-size: 2rem;
-}
-
 .active {
   opacity: 1;
-}
-
-header {
-  margin-bottom: 2rem;
-  color: #fdfdfd;
-  text-align: center;
-  text-decoration: underline;
-  display: grid;
-  gap: 5px;
-}
-.start-header {
-  text-transform: capitalize;
-}
-
-.lost {
-  display: none;
-  text-align: center;
-  color: #fdfdfd;
-  font-size: 2rem;
-  margin-top: 1rem;
 }
 
 @media screen and (min-width: 1440px) {
@@ -110,21 +74,5 @@ header {
   .circle {
     width: 300px;
     height: 300px;
-  }
-  .play {
-    font-size: 5rem;
-  }
-  .moves {
-    font-size: 3rem;
-  }
-  header h1 {
-    font-size: 4rem;
-  }
-  .start-header {
-    font-size: 2rem;
-  }
-
-  .lost {
-    font-size: 3rem;
   }
 }
