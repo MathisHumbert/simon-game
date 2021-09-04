@@ -13,6 +13,8 @@ let strict;
 let flash;
 let count;
 let noise = true;
+let good = true;
+let win = false;
 let pressFlag;
 let computerAction;
 
@@ -28,11 +30,36 @@ function displayColor(panel) {
   }, 500);
 }
 
+// display all the color
+function displayAllColor() {
+  panels.forEach((panel) => {
+    panel.classList.add('active');
+  });
+}
+
+// clearAllColor
+function clearAllColor() {
+  panels.forEach((panel) => {
+    panel.classList.remove('active');
+  });
+}
+
+// if the player win the game
+function winGame() {
+  displayAllColor();
+  countDOM.innerHTML = 'WIN';
+  pressFlag = false;
+  win = true;
+}
+
 // start a new game
 function startGame() {
+  clearAllColor();
   memory = [];
   player = [];
   noise = true;
+  good = true;
+  win = false;
   count = 1;
   flash = 0;
   pressFlag = false;
@@ -75,8 +102,56 @@ function panelClick() {
 }
 
 // check id the answer of the player is the same as the memory
-function checkAnswer() {}
+function checkAnswer() {
+  // if the player is wrong
+  if (player[player.length - 1] != memory[player.length - 1]) {
+    good = false;
+  }
 
+  // if the player wins
+  if (player.length == 4 && good == true) {
+    winGame();
+  }
+
+  // if the player is wrong actions
+  if (good == false) {
+    // displaye err
+    clearAllColor();
+    displayAllColor();
+    countDOM.innerHTML = 'ERR!';
+    setTimeout(() => {
+      countDOM.innerHTML = count;
+      clearAllColor();
+
+      // is strict mode on restart from zero
+      if (strict) {
+        startGame();
+      }
+      // restart from where we are
+      else {
+        computerAction = true;
+        flash = 0;
+        player = [];
+        good = true;
+        game = setInterval(showColor, 1000);
+      }
+    }, 1000);
+  }
+
+  // if player is true
+  if (count == player.length && good && !win) {
+    count++;
+    player = [];
+    computerAction = true;
+    flash = 0;
+    countDOM.innerHTML = count;
+    game = setInterval(showColor, 1000);
+  }
+}
+
+// All events
+
+// handle panel click
 panels.forEach((panel) => {
   panel.addEventListener('click', panelClick);
 });
